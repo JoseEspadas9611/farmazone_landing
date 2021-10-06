@@ -20,7 +20,7 @@ const getData = async (business_id,limit) => {
     const results = await client
       .db("Farmazone")
       .collection("purchaseOrder")
-      .find({"business_id":business_id}).sort({_id:-1}).limit(parseInt(limit))
+      .find({"business_id":parseInt(business_id)}).sort({_id:-1}).limit(parseInt(limit))
       .forEach((order) => data.push(order)); // necesita el forEach para terminar de esperar a la base de datos de lo contrario envía un cursor de Mongo
     return data;
   } catch (err) {
@@ -58,6 +58,7 @@ exports.handler = async function (event, context) {
     let limit = event.queryStringParameters.limit
     try {
         const data = await getData(business_id,limit);
+        console.log(business_id, limit);
         if (data.length != 0){    
             return {
                 statusCode: 200,
