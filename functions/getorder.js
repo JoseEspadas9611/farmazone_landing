@@ -21,7 +21,7 @@ const getData = async (business_id,limit) => {
       .db("Farmazone")
       .collection("purchaseOrder")
       .find({"business_id":business_id}).sort({_id:-1}).limit(parseInt(limit))
-      .forEach((order) => data.push({order})); // necesita el forEach para terminar de esperar a la base de datos de lo contrario envía un cursor de Mongo
+      .forEach((order) => data.push(order)); // necesita el forEach para terminar de esperar a la base de datos de lo contrario envía un cursor de Mongo
     return data;
   } catch (err) {
     console.log(err); // output to netlify function log
