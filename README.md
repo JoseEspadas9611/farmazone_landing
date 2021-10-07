@@ -1,30 +1,6 @@
 # Integracion de frontend de Farmazone con API lambdas
 
-## APIs en Netlify lambda conectadas a Ordering.co
-
-### Obtener categorias de Ordering
- 
-TIPO: POST
-
-CONTENT-TYPE: application/json
-
-URL: https://hardcore-poitras-19aebd.netlify.app/.netlify/functions/getcategories
-
-Ejemplo:
-
-```yaml
-{ "business_id": 83 }
-```
-
-Resultado:
-
-```yaml
-{
-  "error": false,
-  "categoriesLength": 40,
-  "categories": [{ "id": 1232, "name": "Antiinfeccioso" }, ...],
-}
-```
+## APIs en Netlify lambda conectadas a Mongo
 
 ### Obtener categorías de MongoDB
 
@@ -32,7 +8,7 @@ TIPO: GET
 
 CONTENT-TYPE: application/json
 
-URL: https://hardcore-poitras-19aebd.netlify.app/.netlify/functions/getmongocategories
+URL: https://quirky-kowalevski-2d10e5.netlify.app/.netlify/functions/getmongocategories
 
 
 Resultado:
@@ -52,75 +28,13 @@ Resultado:
 ```
 
 
-### Obtener negocio
-
-TIPO: POST
-
-CONTENT-TYPE: application/json
-
-URL: https://hardcore-poitras-19aebd.netlify.app/.netlify/functions/getbusiness
-
-Ejemplo:
-
-```yaml
-{ 
-  "business_id": 83 
-}
-```
-
-Resultado:
-
-```yaml
-{
-  "error": false,
-  "business":
-    {
-      "id": 83,
-      "name": "Farmazone - Guadalupe Inn",
-      "address": "1000 West 5th Street, Austin, TX, USA",
-      "slug": "SanAngel",
-      "phone": "5513137476",
-      "cellphone": null,
-      "email": "Sanangel@farmazone.com.mx",
-    },
-}
-```
-
-### Obtener todos los negocios
-
-TIPO: GET
-
-URL: https://hardcore-poitras-19aebd.netlify.app/.netlify/functions/getbusiness
-
-Resultado:
-
-```yaml
-{
-  "error": false,
-  "businessLength": 18,
-  "businessList":
-    [
-      {
-        "id": 78,
-        "name": "Farmazone Narvarte",
-        "address": "Icacos 38, Narvarte Oriente, Ciudad de México, CDMX, México",
-        "slug": "Narvarte",
-        "open": false,
-        "location":
-          { "lat": 19.3989185, "lng": -99.1524245, "zipcode": -1, "zoom": 15 },
-      },
-      ...,
-    ],
-}
-```
-
 ### Consultar productos por id de categoría en MongoDB
  
 TIPO: GET
 
 CONTENT-TYPE: application/json
 QUERYSTRINGPARAMETERS: category_id
-URL: https://hardcore-poitras-19aebd.netlify.app/.netlify/functions/getproductsbycategory
+URL: https://quirky-kowalevski-2d10e5.netlify.app/.netlify/functions/getproductsbycategory
 
 Ejemplo:
 
@@ -167,60 +81,6 @@ Resultado:
  ```
 
 
-### Obtener productos de Ordering
-
-TIPO: POST
-
-CONTENT-TYPE: application/json
-
-URL: https://hardcore-poitras-19aebd.netlify.app/.netlify/functions/getproducts
-
-Ejemplo:
-
-```yaml
-{ "business_id": 59, ? OBLIGATORIO
-    "category"
-  : 390, ? OBLIGATORIO
-    "limit"
-  : 3, ? OPCIONAL
-    "start_at"
-  : 2 	     OPCIONAL }
-```
-
-Resultado:
-
-```yaml
-{
-  "error": false,
-  "productsLength": 3,
-  "products":
-    [
-      {
-        "id": 14856,
-        "name": "Proalid Ungüento con 15 g (1 mg)",
-        "price": 419,
-        "sku": null,
-        "description": "Proalid Ungüento con 15 g Tacrolimus (1 mg)",
-        "in_offer": false,
-        "offer_price": null,
-      },
-
-      {
-        "id": 14857,
-        "name": "Italdermol Crema con 30 g (0.1/15 g)",
-        "price": 507,
-        ...,
-      },
-
-      {
-        "id": 14858,
-        "name": "Italdermol 10 Gasas con Crema con 4 g (150 mg)",
-        "price": 695,
-        ...,
-      },
-    ],
-}
-```
 
 ### Obtener negocio teniendo coordenadas de localización
 
@@ -228,7 +88,7 @@ TIPO: POST
 
 CONTENT-TYPE: application/json
 
-URL: https://hardcore-poitras-19aebd.netlify.app/.netlify/functions/findbusiness
+URL: https://quirky-kowalevski-2d10e5.netlify.app/.netlify/functions/findbusiness
 
 Ejemplo:
 
@@ -264,7 +124,7 @@ TIPO: POST
 
 CONTENT-TYPE: application/json
 
-URL: https://hardcore-poitras-19aebd.netlify.app/.netlify/functions/getproductavailability
+URL: https://quirky-kowalevski-2d10e5.netlify.app/.netlify/functions/getproductavailability
 
 Ejemplo:
 
@@ -311,7 +171,7 @@ TIPO: POST
 
 CONTENT-TYPE: application/json
 
-URL: https://hardcore-poitras-19aebd.netlify.app/.netlify/functions/getproductdetails
+URL: https://quirky-kowalevski-2d10e5.netlify.app/.netlify/functions/getproductdetails
 
 Ejemplo:
 
@@ -351,13 +211,13 @@ Resultado:
 }
 ```
 
-### Registrar nuevo usuario
+### Registrar nuevo usuario Ordering
 
 TIPO: POST
 
 CONTENT-TYPE: application/json
 
-URL: https://hardcore-poitras-19aebd.netlify.app/.netlify/functions/createuser
+URL: https://quirky-kowalevski-2d10e5.netlify.app/.netlify/functions/createuser
 
 Ejemplo:
 
@@ -387,13 +247,13 @@ Resultado:
 }
 ```
 
-### Iniciar sesión como usuario
+### Iniciar sesión como usuario Ordering
 
 TIPO: POST
 
 CONTENT-TYPE: application/json
 
-URL: https://hardcore-poitras-19aebd.netlify.app/.netlify/functions/login
+URL: https://quirky-kowalevski-2d10e5.netlify.app/.netlify/functions/login
 
 Ejemplo:
 
@@ -426,7 +286,7 @@ TIPO: POST
 
 CONTENT-TYPE: application/json
 
-URL: https://hardcore-poitras-19aebd.netlify.app/.netlify/functions/createmongoorder
+URL: https://quirky-kowalevski-2d10e5.netlify.app/.netlify/functions/createmongoorder
 
 Ejemplo:
 
@@ -516,80 +376,14 @@ Resultado
 </tr>
 </table>
 
-### Obtener lista de ordenes realizadas
 
-TIPO: GET
-
-AUTHORIZATION: Bearer Token
-
-URL: https://hardcore-poitras-19aebd.netlify.app/.netlify/functions/getdashboard
-
-Es necesario haber iniciado sesión para tener el session token
-
-Resultado:
-
-```yaml
-{
-  "error": false,
-  "orders_quantity": 4,
-  "orders": [
-    {
-      "id": 983,
-      "uuid": "5b15d6da-f848-4daa-ae38-10c6a972933c",
-      "paymethod_id": 3,
-      "paymethod": "Paypal",
-      "business_id": 150,
-      "delivery_type": 1,
-      "delivery_datetime": "2021-05-07 13:23:21",
-      "app_id": "web",
-      "created_at": "2021-07-14 17:58:19",
-      "updated_at": "2021-07-15 00:38:05",
-      "hash_key": "b86e5fd7865366asdfghjc08efcf90ecaa47d21",
-      "products": [
-        {
-          "id": 1312,
-          "product_id": 189104,
-          "order_id": 983,
-          "name": "BIBERÓN EVENFLO CLASSIC DE VIDRIO CON CAPACIDAD DE 4 OZ EMPAQUE 1 U",
-          "price": 21.66,
-          "quantity": 2,
-          "comment": null,
-          "ingredients": [],
-          "options": [],
-          "featured": false,
-          "upselling": false,
-          "in_offer": false,
-          "offer_price": null,
-          "images": "https://res.cloudinary.com/farmazone/image/upload/v1621023798/productos/7501027511065.png",
-          "category_id": 1859,
-          "total": 43
-        }
-      ],
-      "business": {
-        "id": 983,
-        "name": "San Angel"
-      }
-      "customer": {
-        "id": 983,
-        "name": "Chucky Muneco",
-        "lastname": null,
-        "phone": null,
-        "email": "chucky@yupi.com"
-      },
-    },
-    ...
-  ]
-}
-```
-
-
-### Usuario olvidó su contraseña
+### Usuario olvidó su contraseña Ordering
 
 TIPO: POST
 
 CONTENT-TYPE: application/json
 
-URL: https://hardcore-poitras-19aebd.netlify.app/.netlify/functions/forgotpassword
+URL: https://quirky-kowalevski-2d10e5.netlify.app/.netlify/functions/forgotpassword
 
 Ejemplo:
 
@@ -611,13 +405,13 @@ Resultado:
 Y se envía un mail a su correo electrónico con un link de una URL
 
 
-### Usuario cambia su contraseña
-
+### Usuario cambia su contraseña Ordering
+ 
 TIPO: POST
 
 CONTENT-TYPE: application/json
 
-URL: https://hardcore-poitras-19aebd.netlify.app/.netlify/functions/resetpassword
+URL: https://quirky-kowalevski-2d10e5.netlify.app/.netlify/functions/resetpassword
 
 Ejemplo:
 
@@ -647,7 +441,7 @@ TIPO: POST
 
 CONTENT-TYPE: application/json
 
-URL: https://hardcore-poitras-19aebd.netlify.app/.netlify/functions/getuseraddresses
+URL: https://quirky-kowalevski-2d10e5.netlify.app/.netlify/functions/getuseraddresses
 
 Ejemplo:
 
@@ -683,7 +477,7 @@ TIPO: POST
 
 CONTENT-TYPE: application/json
 
-URL: https://hardcore-poitras-19aebd.netlify.app/.netlify/functions/removeuseraddress
+URL: https://quirky-kowalevski-2d10e5.netlify.app/.netlify/functions/removeuseraddress
 
 Ejemplo:
 
@@ -708,7 +502,7 @@ Resultado:
 
 TIPO: POST
 
-URL: https://hardcore-poitras-19aebd.netlify.app/.netlify/functions/updateuseraddress
+URL: https://quirky-kowalevski-2d10e5.netlify.app/.netlify/functions/updateuseraddress
 
 ```yaml
 {
@@ -732,7 +526,7 @@ TIPO: POST
 
 CONTENT-TYPE: application/json
 
-URL: https://hardcore-poitras-19aebd.netlify.app/.netlify/functions/createuseraddress
+URL: https://quirky-kowalevski-2d10e5.netlify.app/.netlify/functions/createuseraddress
 
 Ejemplo:
 
@@ -757,7 +551,7 @@ Resultado:
 TIPO: GET
 CONTENT-TYPE: application/json
 QUERYSTRINGPARAMETERS: business_id,limit
-URL: https://hardcore-poitras-19aebd.netlify.app/.netlify/functions/getorder
+URL: https://quirky-kowalevski-2d10e5.netlify.app/.netlify/functions/getorder
 
 Ejemplo:
 
@@ -832,7 +626,7 @@ respuesta 200
  
 TIPO: POST
 CONTENT-TYPE: application/json
-URL:https://hardcore-poitras-19aebd.netlify.app/.netlify/functions/getorder
+URL:https://quirky-kowalevski-2d10e5.netlify.app/.netlify/functions/getorder
 
 Ejemplo:
 
@@ -905,7 +699,7 @@ respuesta 200
 TIPO: GET
 CONTENT-TYPE: application/json
 QUERYSTRINGPARAMETERS: client_id
-URL: https://hardcore-poitras-19aebd.netlify.app/.netlify/functions/getorderbyclient
+URL: https://quirky-kowalevski-2d10e5.netlify.app/.netlify/functions/getorderbyclient
 
 Ejemplo:
 
@@ -934,65 +728,5 @@ respuesta 200
 		{"order":{...}}
 	}
 	]
-}
-```
-
-
-
-
-### Obtener mesas por id de mesero
-TIPO: POST
-
-CONTENT-TYPE: application/json
-
-URL: https://agitated-babbage-25cadb.netlify.app/.netlify/functions/gettablesbywaiter
-
-Ejemplo:
-
-```yaml
-{
-  "business_id":"411",
-  "waiter_id":810
-}
-```
-Resultado:
-respuesta 200
-```yaml
-{
-  "data": [
-    {
-      "table_id": 678,
-      "active": true,
-      "capacity": 4,
-      "name": "Entrada",
-      "reserved": true,
-      "current_orders": []
-    }
-  ]
-}
-```
-
-
-### Modificar el estatus de la orden
- 
-TIPO: POST
-CONTENT-TYPE: application/json
-URL: https://localhost:9000/updatestatusorder
-
-Ejemplo:
-
-```yaml
-{
-	"order_id":"201492021020435507",
-	"email_client":"manuelhv@dagsasc.com",
-	"status":1
-}
-```
-Resultado:
-respuesta 200
-```yaml
-{
-  "error_code": 0,
-  "msg": "Estatus actualizado con exito"
 }
 ```
